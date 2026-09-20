@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NOVAXYRA — Official Digital Products</title>
+<meta name="description" content="NOVAXYRA — Official digital products and services. Discover BLAISE, our AI assistant for Android.">
+<meta name="theme-color" content="#070a12">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+:root{
+    --bg:#070a12;
+    --panel:#101624;
+    --panel2:#0d1320;
+    --text:#f7f9ff;
+    --muted:#9ba6b8;
+    --muted2:#69758a;
+    --line:rgba(255,255,255,.08);
+    --blue:#6d8cff;
+    --blue2:#315fff;
+    --violet:#a78bfa;
+    --green:#65e6a7;
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+    scroll-padding-top:90px;
+}
+
+body{
+    font-family:Inter,Arial,Helvetica,sans-serif;
+    background:
+        radial-gradient(circle at 50% -10%,#202b52 0%,transparent 38%),
+        radial-gradient(circle at 100% 30%,rgba(91,67,180,.13),transparent 30%),
+        var(--bg);
+    color:var(--text);
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+body:before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background-image:
+        linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+    background-size:40px 40px;
+    mask-image:linear-gradient(to bottom,#000,transparent 75%);
+}
+
+/* ================= BRAND ================= */
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    text-decoration:none;
+    color:#fff;
+}
+
+.brand-mark{
+    width:38px;
+    height:38px;
+    border-radius:12px;
+    display:grid;
+    place-items:center;
+    position:relative;
+    overflow:hidden;
+    background:linear-gradient(
+        145deg,
+        #eef3fb 0%,
+        #8795ad 38%,
+        #2674ff 70%,
+        #0751db 100%
+    );
+    box-shadow:0 0 25px rgba(45,110,255,.30);
+}
+
+.brand-mark:before{
+    content:"";
+    position:absolute;
+    width:25px;
+    height:25px;
+    border:2px solid rgba(255,255,255,.75);
+    border-radius:50%;
+}
+
+.brand-mark b{
+    position:relative;
+    z-index:2;
+    color:#07101d;
+    font-size:11px;
+    font-weight:950;
+    letter-spacing:-1px;
+}
+
+.brand-name{
+    font-size:18px;
+    font-weight:900;
+    letter-spacing:1.5px;
+}
+
+.brand-name span{
+    color:var(--blue);
+}
+
+/* ================= HEADER ================= */
+
+header{
+    height:70px;
+    padding:0 18px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:rgba(7,10,18,.78);
+    backdrop-filter:blur(20px);
+    border-bottom:1px solid var(--line);
+}
+
+.menu{
+    width:42px;
+    height:42px;
+    display:grid;
+    place-items:center;
+    border-radius:12px;
+    background:rgba(255,255,255,.05);
+    border:1px solid var(--line);
+    color:#dfe7f5;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.menu:hover{
+    background:rgba(109,140,255,.12);
+    border-color:rgba(109,140,255,.25);
+}
+
+/* ================= SIDE MENU ================= */
+
+.menu-overlay{
+    position:fixed;
+    inset:0;
+    z-index:998;
+    background:rgba(0,0,0,.65);
+    backdrop-filter:blur(5px);
+    opacity:0;
+    visibility:hidden;
+    transition:.3s;
+}
+
+.menu-overlay.active{
+    opacity:1;
+    visibility:visible;
+}
+
+.side-menu{
+    position:fixed;
+    top:0;
+    right:-100%;
+    width:min(86%,350px);
+    height:100dvh;
+    z-index:999;
+    padding:22px 18px;
+    background:#0d1320;
+    border-left:1px solid var(--line);
+    box-shadow:-30px 0 80px rgba(0,0,0,.6);
+    transition:right .35s cubic-bezier(.4,0,.2,1);
+}
+
+.side-menu.active{
+    right:0;
+}
+
+.side-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:25px;
+}
+
+.close-btn{
+    width:40px;
+    height:40px;
+    border:1px solid var(--line);
+    border-radius:12px;
+    background:rgba(255,255,255,.05);
+    color:white;
+    cursor:pointer;
+}
+
+/* LANGUAGE */
+
+.lang-box{
+    display:flex;
+    gap:5px;
+    padding:5px;
+    margin-bottom:18px;
+    border-radius:13px;
+    background:rgba(255,255,255,.035);
+    border:1px solid var(--line);
+}
+
+.lang-box button{
+    flex:1;
+    padding:9px;
+    border:0;
+    border-radius:9px;
+    background:transparent;
+    color:var(--muted2);
+    font-size:11px;
+    font-weight:800;
+    cursor:pointer;
+}
+
+.lang-box button.active{
+    color:white;
+    background:rgba(109,140,255,.18);
+}
+
+/* MENU LINKS */
+
+.menu-links{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.menu-links a{
+    display:flex;
+    align-items:center;
+    gap:13px;
+    padding:14px;
+    border-radius:12px;
+    color:var(--muted);
+    text-decoration:none;
+    font-size:14px;
+    font-weight:700;
+    border:1px solid transparent;
+    transition:.2s;
+}
+
+.menu-links a:hover,
+.menu-links a.active{
+    color:white;
+    background:rgba(109,140,255,.10);
+    border-color:rgba(109,140,255,.16);
+}
+
+.menu-links i{
+    width:18px;
+    text-align:center;
+    color:#7d99ff;
+}
+
+.menu-footer{
+    position:absolute;
+    left:18px;
+    right:18px;
+    bottom:22px;
+    padding-top:15px;
+    text-align:center;
+    border-top:1px solid var(--line);
+    color:var(--muted2);
+    font-size:11px;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+    width:min(920px,92%);
+    margin:auto;
+    padding:75px 0 55px;
+    text-align:center;
+}
+
+.eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:8px 14px;
+    border-radius:999px;
+    color:#b1c0ff;
+    background:rgba(109,140,255,.09);
+    border:1px solid rgba(109,140,255,.20);
+    font-size:10px;
+    font-weight:850;
+    letter-spacing:1px;
+    text-transform:uppercase;
+}
+
+.pulse{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:var(--green);
+    box-shadow:0 0 13px rgba(101,230,167,.8);
+}
+
+.hero h1{
+    margin:23px auto 17px;
+    max-width:800px;
+    font-size:clamp(42px,9vw,72px);
+    line-height:.98;
+    letter-spacing:-3px;
+    font-weight:950;
+}
+
+.gradient{
+    background:linear-gradient(
+        100deg,
+        #fff,
+        #aebeff 50%,
+        #8072ff
+    );
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.hero p{
+    max-width:650px;
+    margin:auto;
+    color:var(--muted);
+    font-size:15px;
+    line-height:1.75;
+}
+
+.hero-actions{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:28px;
+}
+
+.btn{
+    min-height:48px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:9px;
+    padding:0 20px;
+    border-radius:13px;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:850;
+    border:1px solid transparent;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.btn:hover{
+    transform:translateY(-2px);
+}
+
+.primary{
+    color:white;
+    background:linear-gradient(135deg,var(--blue),#536fe4);
+    box-shadow:0 12px 30px rgba(82,110,228,.25);
+}
+
+.secondary{
+    color:#dce5f7;
+    background:rgba(255,255,255,.045);
+    border-color:var(--line);
+}
+
+.hero-note{
+    margin-top:17px;
+    color:var(--muted2);
+    font-size:11px;
+}
+
+/* ================= CONTENT ================= */
+
+.container{
+    width:min(760px,92%);
+    margin:0 auto 55px;
+}
+
+.section-heading{
+    display:flex;
+    align-items:end;
+    justify-content:space-between;
+    margin-bottom:15px;
+}
+
+.section-heading h2{
+    font-size:19px;
+}
+
+.section-heading p{
+    color:var(--muted2);
+    font-size:11px;
+}
+
+/* ================= PRODUCT ================= */
+
+.product{
+    position:relative;
+    overflow:hidden;
+    padding:22px;
+    margin-bottom:17px;
+    border-radius:24px;
+    border:1px solid var(--line);
+    background:
+        linear-gradient(145deg,rgba(18,24,37,.95),rgba(10,14,23,.95));
+    box-shadow:0 24px 70px rgba(0,0,0,.40);
+}
+
+.product:before{
+    content:"";
+    position:absolute;
+    width:200px;
+    height:200px;
+    right:-110px;
+    top:-110px;
+    border-radius:50%;
+    background:rgba(70,100,255,.13);
+    filter:blur(15px);
+}
+
+.product-top{
+    position:relative;
+    z-index:1;
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.product-icon{
+    width:60px;
+    height:60px;
+    flex:0 0 60px;
+    display:grid;
+    place-items:center;
+    border-radius:17px;
+    background:linear-gradient(145deg,#263762,#151f39);
+    border:1px solid rgba(126,153,255,.18);
+    font-size:27px;
+}
+
+.product h3{
+    font-size:21px;
+    margin-bottom:5px;
+}
+
+.meta{
+    color:var(--muted2);
+    font-size:11px;
+}
+
+.description{
+    position:relative;
+    z-index:1;
+    color:var(--muted);
+    font-size:14px;
+    line-height:1.75;
+    margin:18px 0;
+}
+
+.tags{
+    position:relative;
+    z-index:1;
+    display:flex;
+    flex-wrap:wrap;
+    gap:7px;
+    margin-bottom:20px;
+}
+
+.tag{
+    padding:7px 10px;
+    border-radius:9px;
+    color:#b9c3d5;
+    background:#121a28;
+    border:1px solid rgba(255,255,255,.06);
+    font-size:10px;
+    font-weight:750;
+}
+
+.feature-box{
+    position:relative;
+    z-index:1;
+    padding:17px 0;
+    margin-bottom:18px;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+}
+
+.feature-box h4{
+    margin-bottom:12px;
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:.7px;
+}
+
+.features{
+    list-style:none;
+    display:grid;
+    gap:9px;
+}
+
+.features li{
+    display:flex;
+    gap:9px;
+    color:#8f9aad;
+    font-size:12.5px;
+    line-height:1.5;
+}
+
+.features i{
+    margin-top:3px;
+    color:var(--blue);
+}
+
+.product .btn{
+    width:100%;
+    position:relative;
+    z-index:1;
+}
+
+.coming{
+    width:100%;
+    color:#8f9aad;
+    background:#111722;
+    border-color:var(--line);
+}
+
+/* ================= INFO ================= */
+
+.info-card{
+    padding:22px;
+    margin-bottom:17px;
+    border-radius:22px;
+    border:1px solid var(--line);
+    background:rgba(15,21,33,.75);
+}
+
+.info-card h2{
+    font-size:18px;
+    margin-bottom:10px;
+}
+
+.info-card p{
+    color:var(--muted);
+    font-size:13.5px;
+    line-height:1.75;
+}
+
+.contact-line{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-top:14px;
+    padding:13px;
+    border-radius:12px;
+    background:rgba(255,255,255,.035);
+    color:#cbd5e7;
+    font-size:13px;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    padding:35px 18px;
+    text-align:center;
+    border-top:1px solid var(--line);
+    color:var(--muted2);
+    font-size:11px;
+    line-height:1.8;
+}
+
+.footer-logo{
+    margin-bottom:7px;
+    color:#d8e0ef;
+    font-size:15px;
+    font-weight:900;
+    letter-spacing:2px;
+}
+
+.footer-logo span{
+    color:var(--blue);
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:480px){
+
+    header{
+        height:66px;
+    }
+
+    .hero{
+        padding-top:55px;
+    }
+
+    .hero h1{
+        letter-spacing:-2px;
+    }
+
+    .hero-actions .btn{
+        width:100%;
+    }
+
+    .product{
+        padding:18px;
+        border-radius:20px;
+    }
+
+    .product-icon{
+        width:54px;
+        height:54px;
+        flex-basis:54px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- OVERLAY -->
+<div class="menu-overlay" id="overlay"></div>
+
+<!-- SIDE MENU -->
+<aside class="side-menu" id="sideMenu">
+
+    <div class="side-head">
+
+        <a class="brand" href="#home">
+            <div class="brand-mark"><b>NX</b></div>
+            <div class="brand-name">NOVA<span>XYRA</span></div>
+        </a>
+
+        <button class="close-btn" id="closeMenu">
+            <i class="fas fa-xmark"></i>
+        </button>
+
+    </div>
+
+    <!-- LANGUAGE -->
+    <div class="lang-box">
+
+        <button id="enBtn" class="active">
+            ENGLISH
+        </button>
+
+        <button id="frBtn">
+            FRANÇAIS
+        </button>
+
+    </div>
+
+    <!-- MENU -->
+    <nav class="menu-links">
+
+        <a href="#home" class="active menu-link">
+            <i class="fas fa-house"></i>
+            <span data-en="Home" data-fr="Accueil">
+                Home
+            </span>
+        </a>
+
+        <a href="#products" class="menu-link">
+            <i class="fas fa-cubes"></i>
+            <span data-en="Products" data-fr="Produits">
+                Products
+            </span>
+        </a>
+
+        <a href="https://bit.ly/blaise-app"
+           target="_blank"
+           rel="noopener noreferrer">
+
+            <i class="fas fa-download"></i>
+
+            <span data-en="Download BLAISE"
+                  data-fr="Télécharger BLAISE">
+                Download BLAISE
+            </span>
+
+        </a>
+
+        <a href="#about" class="menu-link">
+            <i class="fas fa-circle-info"></i>
+
+            <span data-en="About NOVAXYRA"
+                  data-fr="À propos de NOVAXYRA">
+                About NOVAXYRA
+            </span>
+
+        </a>
+
+        <a href="#contact" class="menu-link">
+            <i class="fas fa-envelope"></i>
+
+            <span data-en="Contact"
+                  data-fr="Contact">
+                Contact
+            </span>
+
+        </a>
+
+        <a href="#privacy" class="menu-link">
+            <i class="fas fa-shield-halved"></i>
+
+            <span data-en="Privacy"
+                  data-fr="Confidentialité">
+                Privacy
+            </span>
+
+        </a>
+
+    </nav>
+
+    <div class="menu-footer">
+        <strong style="color:#b8c3d6">NOVAXYRA</strong><br>
+
+        <span data-en="Digital Products & Services"
+              data-fr="Produits & Services Numériques">
+            Digital Products & Services
+        </span>
+
+        <br>
+
+        © 2026 NOVAXYRA
+    </div>
+
+</aside>
+
+<!-- HEADER -->
+<header>
+
+    <a class="brand" href="#home">
+
+        <div class="brand-mark">
+            <b>NX</b>
+        </div>
+
+        <div class="brand-name">
+            NOVA<span>XYRA</span>
+        </div>
+
+    </a>
+
+    <button class="menu" id="openMenu">
+        <i class="fas fa-bars-staggered"></i>
+    </button>
+
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home">
+
+    <div class="eyebrow">
+
+        <span class="pulse"></span>
+
+        <span data-en="Official Digital Products"
+              data-fr="Produits Numériques Officiels">
+            Official Digital Products
+        </span>
+
+    </div>
+
+    <h1>
+
+        <span data-en="Build the future."
+              data-fr="Construisons le futur.">
+            Build the future.
+        </span>
+
+        <br>
+
+        <span class="gradient">
+            NOVAXYRA
+        </span>
+
+    </h1>
+
+    <p
+        data-en="A digital ecosystem focused on practical products, intelligent tools and new technology experiences."
+        data-fr="Un écosystème numérique axé sur des produits pratiques, des outils intelligents et de nouvelles expériences technologiques.">
+
+        A digital ecosystem focused on practical products,
+        intelligent tools and new technology experiences.
+
+    </p>
+
+    <div class="hero-actions">
+
+        <a href="#products" class="btn primary">
+
+            <i class="fas fa-cubes"></i>
+
+            <span data-en="Explore Products"
+                  data-fr="Découvrir les Produits">
+                Explore Products
+            </span>
+
+        </a>
+
+        <a href="https://bit.ly/blaise-app"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="btn secondary">
+
+            <i class="fas fa-download"></i>
+
+            <span data-en="Get BLAISE"
+                  data-fr="Obtenir BLAISE">
+                Get BLAISE
+            </span>
+
+        </a>
+
+    </div>
+
+    <div class="hero-note"
+         data-en="One platform. New products. Continuous evolution."
+         data-fr="Une plateforme. De nouveaux produits. Une évolution continue.">
+
+        One platform. New products. Continuous evolution.
+
+    </div>
+
+</section>
+
+<!-- PRODUCTS -->
+<main class="container" id="products">
+
+    <div class="section-heading">
+
+        <h2 data-en="Featured Product"
+            data-fr="Produit Principal">
+            Featured Product
+        </h2>
+
+        <p data-en="Available now"
+           data-fr="Disponible maintenant">
+            Available now
+        </p>
+
+    </div>
+
+    <!-- BLAISE -->
+    <article class="product">
+
+        <div class="product-top">
+
+            <div class="product-icon">
+                🤖
+            </div>
+
+            <div>
+
+                <h3>BLAISE</h3>
+
+                <div class="meta">
+                    <i class="fab fa-android"></i>
+                    Android • v2.1.0 • 12.5 MB
+                </div>
+
+            </div>
+
+        </div>
+
+        <p class="description"
+           data-en="BLAISE is a digital AI assistant developed within the NOVAXYRA ecosystem. It brings practical tools into one simple mobile experience."
+           data-fr="BLAISE est un assistant IA numérique développé au sein de l’écosystème NOVAXYRA. Il rassemble des outils pratiques dans une expérience mobile simple.">
+
+            BLAISE is a digital AI assistant developed within
+            the NOVAXYRA ecosystem. It brings practical tools
+            into one simple mobile experience.
+
+        </p>
+
+        <div class="tags">
+
+            <span class="tag">
+                <i class="fas fa-robot"></i>
+                AI Assistant
+            </span>
+
+            <span class="tag">
+                <i class="fas fa-language"></i>
+                Translation
+            </span>
+
+            <span class="tag">
+                <i class="fas fa-code"></i>
+                Code Tools
+            </span>
+
+            <span class="tag">
+                <i class="fab fa-android"></i>
+                Android
+            </span>
+
+        </div>
+
+        <div class="feature-box">
+
+            <h4>
+
+                <i class="fas fa-sparkles"></i>
+
+                <span data-en="Highlights"
+                      data-fr="Points forts">
+                    Highlights
+                </span>
+
+            </h4>
+
+            <ul class="features">
+
+                <li>
+                    <i class="fas fa-check-circle"></i>
+
+                    <span data-en="AI assistant for everyday questions and tasks."
+                          data-fr="Assistant IA pour les questions et tâches du quotidien.">
+                        AI assistant for everyday questions and tasks.
+                    </span>
+
+                </li>
+
+                <li>
+                    <i class="fas fa-check-circle"></i>
+
+                    <span data-en="Practical translation tools for multilingual use."
+                          data-fr="Outils de traduction pratiques pour une utilisation multilingue.">
+                        Practical translation tools for multilingual use.
+                    </span>
+
+                </li>
+
+                <li>
+                    <i class="fas fa-check-circle"></i>
+
+                    <span data-en="HTML, CSS and JavaScript editing tools."
+                          data-fr="Outils d’édition HTML, CSS et JavaScript.">
+                        HTML, CSS and JavaScript editing tools.
+                    </span>
+
+                </li>
+
+                <li>
+                    <i class="fas fa-check-circle"></i>
+
+                    <span data-en="Useful tools for learning, productivity and digital projects."
+                          data-fr="Outils utiles pour l’apprentissage, la productivité et les projets numériques.">
+                        Useful tools for learning, productivity and digital projects.
+                    </span>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+        <a class="btn primary"
+           href="https://bit.ly/blaise-app"
+           target="_blank"
+           rel="noopener noreferrer">
+
+            <i class="fas fa-download"></i>
+
+            <span data-en="Download BLAISE"
+                  data-fr="Télécharger BLAISE">
+                Download BLAISE
+            </span>
+
+        </a>
+
+    </article>
+
+    <!-- COMING SOON -->
+    <article class="product">
+
+        <div class="product-top">
+
+            <div class="product-icon">
+                ✦
+            </
